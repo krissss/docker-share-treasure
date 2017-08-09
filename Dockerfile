@@ -29,6 +29,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+#设置时区
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo 'Asia/Shanghai' >/etc/timezone
+
 # PHP-FPM 环境设置
 RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock
 
