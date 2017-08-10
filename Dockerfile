@@ -56,4 +56,4 @@ EXPOSE 82
 # WX
 EXPOSE 83
 
-CMD ["supervisord"]
+CMD ["supervisord" "-c" "/etc/supervisor/supervisord.conf"]
