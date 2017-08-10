@@ -45,7 +45,7 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/app.conf /etc/nginx/sites-available/default
 
 # supervisor 配置
-COPY ./supervisor/ /etc/supervisor/conf.d/
+COPY ./supervisor/ /etc/supervisor/
 
 # PC
 EXPOSE 80
