@@ -47,6 +47,10 @@ COPY ./nginx/app.conf /etc/nginx/sites-available/default
 # supervisor 配置
 COPY ./supervisor/ /etc/supervisor/
 
+WORKDIR /app
+
+VOLUME ["/app"]
+
 # PC
 EXPOSE 80
 # PC admin
