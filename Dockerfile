@@ -49,7 +49,10 @@ COPY ./supervisor/ /etc/supervisor/
 
 WORKDIR /app
 
-VOLUME ["/app"]
+# 挂载阿里云第三方数据卷
+# @link https://help.aliyun.com/document_detail/44607.html?spm=5176.doc26033.6.644.YwOmoh
+VOLUME fxb-jy /nouse
+VOLUME /mnt/acs_mnt/nas/share-treasure /app
 
 # PC
 EXPOSE 80
