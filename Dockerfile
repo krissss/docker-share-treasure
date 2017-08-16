@@ -49,10 +49,6 @@ COPY ./supervisor/ /etc/supervisor/
 
 WORKDIR /app
 
-# 挂载阿里云第三方数据卷
-# @link https://help.aliyun.com/document_detail/44607.html?spm=5176.doc26033.6.644.YwOmoh
-VOLUME ["/app"]
-
 # PC
 EXPOSE 80
 # PC admin
