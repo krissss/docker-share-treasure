@@ -1,4 +1,9 @@
 server {
+   listen 79;
+   server_name localhost;
+   return 301 https://$host$request_uri;
+}
+server {
    charset utf-8;
    client_max_body_size 128M;
    sendfile off;
