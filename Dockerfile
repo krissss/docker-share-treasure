@@ -40,15 +40,14 @@ RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock
 COPY ./php/ /etc/php/7.0/
 
 # nginx 配置
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-# nginx 虚拟域名
-COPY ./nginx/app.conf /etc/nginx/sites-available/default
+COPY ./nginx/ /etc/nginx/
 
 # supervisor 配置
 COPY ./supervisor/ /etc/supervisor/
 
 WORKDIR /app
 
+# 主服务器设置1，从服务器设置0
 ENV IS_MASTER_SERVER=1
 
 # http 跳转到 https 端口
