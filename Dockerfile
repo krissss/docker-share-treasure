@@ -60,4 +60,5 @@ EXPOSE 82
 # WX
 EXPOSE 83
 
-CMD ["supervisord", "-c", "/etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf", "-u", "root", "-n"]
+#CMD ["supervisord", "-c", "/etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf", "-u", "root", "-n"]
+CMD supervisord -c /etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf -u root -n
