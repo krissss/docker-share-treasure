@@ -51,6 +51,8 @@ WORKDIR /app
 
 ENV IS_MASTER_SERVER=1
 
+# http 跳转到 https 端口
+EXPOSE 79
 # PC
 EXPOSE 80
 # PC admin
