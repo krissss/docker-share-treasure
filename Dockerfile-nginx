@@ -19,9 +19,8 @@ RUN apt-get update && apt-get install -y \
 		php-bcmath \
 		php-zip \
 		php-curl \
-		# apache2
-		apache2 \
-		libapache2-mod-php \
+		# nginx
+		nginx \
 		# supervisor
 		supervisor \
 
@@ -35,13 +34,13 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
   && echo 'Asia/Shanghai' >/etc/timezone
 
 # PHP-FPM 环境设置
-#RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock
+RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock
 
 # PHP 配置
 COPY ./php/ /etc/php/7.0/
 
 # nginx 配置
-COPY ./apache2/ /etc/apache2/
+COPY ./nginx/ /etc/nginx/
 
 # supervisor 配置
 COPY ./supervisor/ /etc/supervisor/
