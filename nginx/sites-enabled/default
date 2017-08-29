@@ -102,6 +102,10 @@ server {
    root        /app/wx/;
    index       index.html;
 
+   location / {
+     try_files $uri $uri/ /index.html;
+   }
+
    location ~ /\.(ht|svn|git) {
        deny all;
    }
