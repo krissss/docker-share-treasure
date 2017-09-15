@@ -1,2 +1,3 @@
 # fxb-docker-php
-分享宝-docker-php
+
+适用于阿里云容器环境
