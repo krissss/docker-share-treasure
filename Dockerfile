@@ -53,6 +53,7 @@ RUN dpkg -i /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
 RUN rm -rf /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
 RUN chmod +x /tingyun/install.sh
 
+# 根目录
 WORKDIR /app
 
 # 主服务器设置1，从服务器设置0
