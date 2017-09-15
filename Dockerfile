@@ -24,13 +24,12 @@ RUN apt-get update && apt-get install -y \
 		# supervisor
 		supervisor \
 		# 用于自动执行交互命令
-		#expect \
-		expect
+		expect \
 
 	# 用完包管理器后安排打扫卫生可以显著的减少镜像大小
-    #&& apt-get clean \
-    #&& apt-get autoclean \
-    #&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt-get clean \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #设置时区
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -52,6 +51,7 @@ COPY ./supervisor/ /etc/supervisor/
 COPY ./tingyun/ /tingyun
 RUN dpkg -i /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
 RUN rm -rf /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
+RUN chmod +x /tingyun/install.sh
 
 WORKDIR /app
 
@@ -69,4 +69,4 @@ EXPOSE 82
 # WX
 EXPOSE 83
 
-CMD supervisord -c /etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf -u root -n
+CMD /tingyun/install.sh && supervisord -c /etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf -u root -n
