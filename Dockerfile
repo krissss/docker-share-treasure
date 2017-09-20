@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y \
 		nginx \
 		# supervisor
 		supervisor \
+		# 用于自动执行交互命令
+		expect \
 
 	# 用完包管理器后安排打扫卫生可以显著的减少镜像大小
     && apt-get clean \
@@ -45,6 +47,13 @@ COPY ./nginx/ /etc/nginx/
 # supervisor 配置
 COPY ./supervisor/ /etc/supervisor/
 
+# 听云的 agent
+COPY ./tingyun/ /tingyun
+RUN dpkg -i /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
+RUN rm -rf /tingyun/tingyun-agent-php-2.8.2.x86_64.deb
+RUN chmod +x /tingyun/install.sh
+
+# 根目录
 WORKDIR /app
 
 # 主服务器设置1，从服务器设置0
@@ -61,5 +70,4 @@ EXPOSE 82
 # WX
 EXPOSE 83
 
-#CMD ["supervisord", "-c", "/etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf", "-u", "root", "-n"]
-CMD supervisord -c /etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf -u root -n
+CMD /tingyun/install.sh && supervisord -c /etc/supervisor/${IS_MASTER_SERVER}/supervisord.conf -u root -n
